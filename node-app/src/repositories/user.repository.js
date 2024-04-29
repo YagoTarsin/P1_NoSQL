@@ -2,18 +2,14 @@ const UserModel = require('../models/user.model');
 
 class UserRepository {
     async findByCredentials(username, password) {
-        try {
-            // Aqui, você deve implementar a lógica para verificar as credenciais
-            // Este é apenas um exemplo básico
-            const user = await UserModel.findOne({ username, password });
-            return user;
-        } catch (error) {
-            console.error("Erro ao buscar usuário:", error);
-            throw error;
-        }
+        return UserModel.findOne({ username, password }).exec();
     }
 
-    // Outros métodos relacionados ao acesso aos dados dos usuários podem ser adicionados aqui
+    async createUser(userData) {
+        const user = new UserModel(userData);
+        await user.save();
+        return user;
+    }
 }
 
 module.exports = new UserRepository();

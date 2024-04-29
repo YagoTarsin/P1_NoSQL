@@ -13,6 +13,7 @@ services:
       - mongo
     environment:
       - NODE_ENV=development
+      - MONGO_URI=mongodb://mongo:27017/meuBancoDeDados
 
   flask-app:
     build: ./flask-app
@@ -25,7 +26,7 @@ services:
       - FLASK_APP=app.py
 
   mongo:
-    image: mongo:latest
+    image: mongo:4.4
     ports:
       - "27017:27017"
     volumes:

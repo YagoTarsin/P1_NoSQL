@@ -6,7 +6,7 @@
 </head>
 <body>
     <h2>Registrar</h2>
-    <form action="/users/register" method="post">
+    <form id="registerForm">
         <label for="username">Usuário:</label>
         <input type="text" id="username" name="username" required><br><br>
         <label for="email">Email:</label>
@@ -15,5 +15,31 @@
         <input type="password" id="password" name="password" required><br><br>
         <button type="submit">Registrar</button>
     </form>
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            fetch('/users/register', {
+                method: 'POST',
+                body: JSON.stringify({
+                    username: document.getElementById('username').value,
+                    email: document.getElementById('email').value,
+                    password: document.getElementById('password').value
+                }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Registro bem-sucedido!');
+                } else {
+                    alert(data.message);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
 </body>
 </html>
