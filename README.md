@@ -30,7 +30,7 @@ Siga os passos abaixo para configurar e rodar o sistema utilizando Docker Compos
    Clone este repositório para sua máquina local usando:
 
    ```bash
-   git clone https://url-para-seu-repositorio.com
+   git clone https://github.com/YagoTarsin/P1_NoSQL.git
    cd nome-do-repositorio
 
 2. **Configurar Variáveis de Ambiente**: Antes de iniciar a aplicação, é necessário configurar as variáveis de ambiente. Crie um arquivo `.env` na raiz do projeto com as seguintes variáveis para definir a URI de conexão com o MongoDB e a porta em que a aplicação será executada. Substitua `nomeDoBanco` pelo nome do seu banco de dados e, se necessário, ajuste o número da porta.
