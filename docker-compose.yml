@@ -1,19 +1,31 @@
 version: '3.8'
+
 services:
-  app:
-    build: .
+  node-app:
+    build: ./node-app
     ports:
       - "3000:3000"
     volumes:
-      - .:/app
+      - ./node-app:/app
       - /app/node_modules
+
     depends_on:
       - mongo
     environment:
-      - MONGO_URI=mongodb://mongo:27017/meuBancoDeDados
+      - NODE_ENV=development
+
+  flask-app:
+    build: ./flask-app
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./flask-app:/app
+    environment:
+      - FLASK_ENV=development
+      - FLASK_APP=app.py
 
   mongo:
-    image: mongo:4.4
+    image: mongo:latest
     ports:
       - "27017:27017"
     volumes:
